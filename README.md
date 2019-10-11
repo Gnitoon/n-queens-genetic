@@ -36,9 +36,11 @@ The following parameters can be changed:
 
 * validSetButton -> show button to place a valid set (also can call 'validSet(0 or 1)')
 * dark           -> dark/light mode
+* population     -> population size (how many queens, rows and cols will have)
 * mutation       -> mutation rate  (0-1), change how many changes the queen array will have
 * crossover      -> crossover rate (0-1), change where the parents arrays will be splitted/spliced
-* population     -> population size (how many queens, rows and cols will have)
+* minFit         -> (0-10) minimal fitness to selection after crossover
+* maxIterations  -> (0-?)  max iterations to aply in algorithm
 
 ```JavaScript
 data:{
@@ -48,6 +50,8 @@ data:{
     tuning:{
         mutation: 0.5,
         crossover: 0.3,
+        minFit: 4,
+        maxIterations: 100
     },
 }
 
@@ -78,6 +82,8 @@ data:{
 
 ### 2019/10/11
 
+* added running flag
 * added inputs in html
 * changelog
 * minor fixes
+* fixed maxIterations and mininal fitness in wrong place

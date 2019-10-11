@@ -79,11 +79,11 @@ let app = new Vue({
         tuning:{
             mutation: 0.5,
             crossover: 0.3,
-            minFit: 4
+            minFit: 4,
+            maxIterations: 100
         },
         iteration: 0,
         running: false,
-        maxIterations: 100
     },
     created: function(){
         this.table = this.blankTable(this.population);
@@ -545,7 +545,7 @@ let app = new Vue({
             return fitness/2;
         },
         
-        init: function(it = this.maxIterations, minFit = this.tuning.minFit){
+        init: function(it = this.tuning.maxIterations, minFit = this.tuning.minFit){
             this.running = true;
             if(it >= 1000){
                 let conf = confirm('This action may cause high CPU usage');
@@ -615,7 +615,7 @@ let app = new Vue({
             return;
         },
 
-        iterate: function(its = this.maxIterations, minFit = this.tuning.minFit){
+        iterate: function(its = this.tuning.maxIterations, minFit = this.tuning.minFit){
             let fit;
             for(let i = 0; i<its; i++){
                 this.running = true;
