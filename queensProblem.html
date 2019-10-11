@@ -13,6 +13,7 @@
         .dark{
             --bg: #222222;
             --bg-top: #191919;
+            --bg-sec: #191919;
             --text-light: #646464;
             --text-dark: #FFF;
             --redA: rgba(255,0,0,0.3);
@@ -20,6 +21,7 @@
         .light{
             --bg: #FFFFFF;
             --bg-top: #646464;
+            --bg-sec: #cecece;
             --text-light: #CDCDCD;
             --text-dark: #000;
             --redA: rgba(255,0,0,0.75);
@@ -70,6 +72,18 @@
             color: var(--text-dark);
             outline: none;
         }
+        .tun-input{
+            border: none;
+            background-color: var(--bg-sec);
+            padding: 5px;
+            border-radius: 5px;
+            color: var(--text-dark);
+        }
+        .input-cont label{
+            font-size: 90%;
+            color: var(--text-light);
+        }
+
 
         .cent-h{ margin: 0 auto; }
         .cent-v{ margin: auto 0; }
@@ -85,7 +99,56 @@
 
         <div class="thme-toggle-cont">
             <button v-on:click="toggleTheme()" v-html="dark ? 'Light' : 'Dark'"></button><br>
-            <button v-on:click="setQueens([2,0,3,1])" v-if="false">Valid set</button>
+            <button v-on:click="setQueens([2,0,3,1])" v-if="validSetButton">Valid set</button>
+        </div>
+
+        <div style="position: absolute; width: 100%; top: 1vh; display: flex;">
+            <div style="margin: auto;" class="input-cont">
+                <label for="inp-mut">Mutation rate</label>
+                <input type="number"
+                    v-bind:readonly="running"
+                    step="0.1"
+                    max="1"
+                    min="0"
+                    id="inp-mut"
+                    class="tun-input"
+                    placeholder="Muatation rate (0-1)"
+                    v-model="tuning.mutation"
+                >
+                
+                <label for="inp-cro">Crossover rate</label>
+                <input type="number" 
+                    v-bind:readonly="running"
+                    step="0.1"
+                    max="1"
+                    min="0" 
+                    id="inp-cro"
+                    class="tun-input"
+                    placeholder="crossover rate (0-1)"
+                    v-model="tuning.crossover"
+                >
+                
+                <label for="inp-fit">Minimal fitness</label>
+                <input type="number" 
+                    v-bind:readonly="running" 
+                    step="1" 
+                    max="10"
+                    min="1"
+                    id="inp-fit"
+                    class="tun-input"
+                    v-model="tuning.minFit"
+                >
+
+                <label for="inp-its">Max Iterations</label>
+                <input type="number" 
+                    v-bind:readonly="running" 
+                    step="1" 
+                    min="1"
+                    id="inp-its"
+                    class="tun-input"
+                    v-model="maxIterations"
+                >
+            </div>
         </div>
 
         <div class="cent">

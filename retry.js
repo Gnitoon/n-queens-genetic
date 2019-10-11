@@ -65,6 +65,7 @@ class Table{
 let app = new Vue({
     el: '#app-container',
     data: {
+        validSetButton: false,
         dark: true,
         update: false,
         table: [],
@@ -78,8 +79,11 @@ let app = new Vue({
         tuning:{
             mutation: 0.5,
             crossover: 0.3,
+            minFit: 4
         },
-        iteration: 0
+        iteration: 0,
+        running: false,
+        maxIterations: 100
     },
     created: function(){
         this.table = this.blankTable(this.population);
@@ -541,8 +545,8 @@ let app = new Vue({
             return fitness/2;
         },
         
-        init: function(it = 100, minFit = 4){
-
+        init: function(it = this.maxIterations, minFit = this.tuning.minFit){
+            this.running = true;
             if(it >= 1000){
                 let conf = confirm('This action may cause high CPU usage');
                 if(!conf){
@@ -607,13 +611,14 @@ let app = new Vue({
 
             console.log("First gen done, now call 'app.iterate()'");
 
-
+            this.running = false;
             return;
         },
 
-        iterate: function(its = 100, minFit = 4){
+        iterate: function(its = this.maxIterations, minFit = this.tuning.minFit){
             let fit;
             for(let i = 0; i<its; i++){
+                this.running = true;
                 let mother = this.best.first;
                 let father = this.best.second;
                 
@@ -632,6 +637,7 @@ let app = new Vue({
                 this.best.second = this.mutate(crossed[1]);
                 this.iteration++;
             }
+            this.running = false;
             return {iterations: this.iteration, fitness: fit};
         },
 

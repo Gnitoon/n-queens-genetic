@@ -34,13 +34,15 @@ app.iterate(100000, 4)
 
 The following parameters can be changed:
 
-* dark       -> dark/light mode
-* mutation   -> mutation rate  (0-1), change how many changes the queen array will have
-* crossover  -> crossover rate (0-1), change where the parents arrays will be splitted/spliced
-* population -> population size (how many queens, rows and cols will have)
+* validSetButton -> show button to place a valid set (also can call 'validSet(0 or 1)')
+* dark           -> dark/light mode
+* mutation       -> mutation rate  (0-1), change how many changes the queen array will have
+* crossover      -> crossover rate (0-1), change where the parents arrays will be splitted/spliced
+* population     -> population size (how many queens, rows and cols will have)
 
 ```JavaScript
 data:{
+    validSetButton: false,
     dark: true,
     population: 4,
     tuning:{
@@ -59,3 +61,23 @@ data:{
 ## license
 
 * MIT
+
+## Changelog
+
+### 2019/10/09
+
+* Added themes (dark/ligh)
+* General functions
+* generation, mutation and crossover
+
+### 2019/10/10
+
+* Verifyers and general things
+* iterators and finish
+* finished first version
+
+### 2019/10/11
+
+* added inputs in html
+* changelog
+* minor fixes
