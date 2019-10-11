@@ -1,3 +1,6 @@
+/**
+ * @deprecated Moved to vue
+ */
 class Table{
     constructor(rows, cols) {
         this.table = [];
@@ -55,10 +58,10 @@ class Table{
 // console.log(Math.ceil(Math.random() * 4))
 
 
-tab = new Table(4, 4);
-mtxData = tab.table
-
-
+/**
+ * @author Matsukii <matheuscesar@gmail.com>
+ * @description N queens implementation based on Genetic Algorithm and using Vue.js
+ */
 let app = new Vue({
     el: '#app-container',
     data: {
